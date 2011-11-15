@@ -1,4 +1,3 @@
-
 require 'rubygems'
 require 'chef/log'
 require 'chef'
@@ -18,7 +17,7 @@ class NSCAHandler < Chef::Handler
     ret=''
     if run_status.failed? || (run_status.elapsed_time > @c_elapsed_time.to_i ) || (run_status.updated_resources.length > @c_updated_res.to_i)
       ret=2 
-      Chef::Log.info( "Setiing host status critical:#{run_status.failed?} | #{run_status.elapsed_time} | #{@c_elapsed_time.to_i} | #{run_status.updated_resources.length} | #{@c_updated_res.to_i}")
+      Chef::Log.info( "Setting host status critical:#{run_status.failed?} | #{run_status.elapsed_time} | #{@c_elapsed_time.to_i} | #{run_status.updated_resources.length} | #{@c_updated_res.to_i}")
     elsif (run_status.elapsed_time > @w_elapsed_time.to_i) || (run_status.updated_resources.length > @w_updated_res.to_i)
       Chef::Log.info( "Setting host status warning  : #{run_status.elapsed_time} | #{@w_elapsed_time.to_i} | #{run_status.updated_resources.length}")
       ret=1
